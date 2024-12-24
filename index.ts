@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./db/config";
 import paymentRouter from "./router/payment.routes";
-// import attendanceRouter from "./router/attendance.routes";
+import attendanceRouter from "./router/attendance.routes";
 import dotenv from "dotenv";
 import { urlencoded } from "body-parser";
 
@@ -16,7 +16,7 @@ app.use(cors());
 
 //////////// routers
 app.use(paymentRouter);
-// app.use(attendanceRouter);
+app.use(attendanceRouter);
 
 //////////// connect to database
 

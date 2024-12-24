@@ -1,33 +1,56 @@
-// const {Schema,model} = require('mongoose')
-// const {v4} = require("uuid")
+import {Schema,model, Document} from 'mongoose'
+import {v4 as uuid} from 'uuid'
 
-// const attendanceSchema = new Schema({
-//   groupName:{
-//     type:String,
-//     required:true
-//   },
-//   subject:{
-//     type:String,
-//     required:true
-//   },
-//   teacher:{
-//     type:String,
-//     required:true
-//   },
-//   students:[{
-//     studentName:{
-//       type:String,
-//       required:true,
-//     },
-//     status:{
-//       type:String,
-//       required:true
-//     }
-//   }],
-//   date:{
-//     type:Date,
-//     default:Date.now
-//   }
-// })
+// export interface Attendance extends Document {
+//   group_id:string;
+//   groupName: string;
+//   subject: string;
+//   teacher: string;
+//   date:Date;
+//   student: {
+//     student_id: string;
+//     status: boolean;
+//   };
+// }
+const attendanceSchema = new Schema ({
+  group_id:{
+    type: String,
+    required:true,
+    default: uuid
+  },
+  groupName:{
+    type:String,
+    required:true,
+    minlength:[3,"Group name must be at least 3 characters longs"],
+    maxLength:[100, "group name must be Less than 100 characters Longs"]
 
-// module.exports = model('attendance', attendanceSchema)
+  },
+  subject:{
+    type:String,
+    required:true,
+    minlength:[3,"Subject must be at least 3 characters longs"],
+    maxLength:[100, "Subject must be Less than 100 characters Longs"]
+  },
+  teacher:{
+    type:String,
+    required:true,
+    minlength:[3,"Subject must be at least 3 characters longs"],
+    maxLength:[100, "Subject must be Less than 100 characters Longs"]
+  },
+  student: {
+    student_id: {
+      type: String,
+      required: true,
+    },
+    status: {
+      type: Boolean,
+      required: true
+    }
+  },
+  date:{
+    type:Date,
+    default: Date.now
+  }
+})
+const AttendanceSchema = model ('attendance', attendanceSchema)
+export default AttendanceSchema

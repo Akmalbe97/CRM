@@ -52,8 +52,3 @@ export const addPayment = async (
 //   }
 // };
 
-// export default {
-//   getPaidStudents,
-//   addPayment,
-//   searchStudents,
-// };
