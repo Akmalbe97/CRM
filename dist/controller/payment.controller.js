@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.searchStudents = exports.addPayment = exports.getPaidStudents = void 0;
+exports.addPayment = exports.getPaidStudents = void 0;
 const payment_schema_1 = __importDefault(require("../schema/payment.schema"));
 const getPaidStudents = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -37,24 +37,22 @@ const addPayment = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.addPayment = addPayment;
-const searchStudents = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { student_id: string } = req.params;
-        const id = yield payment_schema_1.default.findOne({ student_id: string });
-        if (!id) {
-            return res.json({
-                message: "This student is not found",
-            });
-        }
-        res.json(id);
-    }
-    catch (error) {
-        next(error);
-    }
-});
-exports.searchStudents = searchStudents;
-// export default {
-//   getPaidStudents,
-//   addPayment,
-//   searchStudents,
+// export const searchStudents = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ): Promise<Response | void> => {
+//   try {
+//     const student_id = "idwcb";
+//     const { id } = req.params;
+//     const student = await paymentSchema.findOne({ student_id: id });
+//     if (!student) {
+//       res.json({
+//         message: "This student is not found",
+//       });
+//     }
+//     res.json(id);
+//   } catch (error) {
+//     next(error);
+//   }
 // };
