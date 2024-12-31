@@ -5,6 +5,7 @@ import paymentRouter from "./router/payment.routes";
 import attendanceRouter from "./router/attendance.routes";
 import dotenv from "dotenv";
 import { urlencoded } from "body-parser";
+import GroupRouter from "./router/group.routes";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors());
 //////////// routers
 app.use(paymentRouter);
 app.use(attendanceRouter);
+app.use(GroupRouter)
 
 //////////// connect to database
 
